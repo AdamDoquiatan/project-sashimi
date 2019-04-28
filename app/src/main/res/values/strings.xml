@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ProjectSashimi</string>
+
+
+    <!-- fragment_noaccdash_layout -->
+    <string name="header0">No Account Mode</string>
+    <string name="prompt0">Eating Alone or With Friends?</string>
+    <string name="btn0">GO SOLO</string>
+    <string name="btn1">GO WITH\nFRIENDS</string>
+    <!-- ========================= -->
+
+
+
+
+
+
+
+    <!--
+    <string name=""></string>
+    -->
+
+</resources>
