@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new Fragment_NoAccDash(), "Fragment_NoAccDash");
-        mViewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
     }
 
 

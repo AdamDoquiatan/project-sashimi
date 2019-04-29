@@ -3,15 +3,15 @@
 
 
     <!-- fragment_noaccdash_layout -->
-    <string name="header0">No Account Mode</string>
-    <string name="prompt0">Eating Alone or With Friends?</string>
-    <string name="btn0">GO SOLO</string>
-    <string name="btn1">GO WITH\nFRIENDS</string>
+    <string name="header_0a">No Account Mode</string>
+    <string name="prompt_0a">Eating Alone or With Friends?</string>
+    <string name="btn_0a">GO SOLO</string>
+    <string name="btn_0b">GO WITH\nFRIENDS</string>
     <!-- ========================= -->
 
-
-
-
+    <!-- activity_noaccsolo_layout -->
+    <string name="header_1a">No Account Solo Mode</string>
+    <!-- ========================= -->
 
 
 

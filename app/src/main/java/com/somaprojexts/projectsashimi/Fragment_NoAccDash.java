@@ -1,5 +1,6 @@
 package com.somaprojexts.projectsashimi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,6 +33,21 @@ public class Fragment_NoAccDash extends Fragment {
         btn_goSolo = view.findViewById(R.id.btn_go_solo);
         btn_goWithFriends = view.findViewById(R.id.btn_go_with_friends);
 
+        btn_goSolo.setOnClickListener(new View.OnClickListener() {
+
+
+
+            @Override
+            public void onClick(View view) {
+                Log.i("btn_goSolo","clicked");
+
+                Intent intent = new Intent(getActivity(), Activity_NoAccSolo.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
+
+
 }
