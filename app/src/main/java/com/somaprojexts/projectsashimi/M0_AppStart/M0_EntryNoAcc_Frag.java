@@ -1,4 +1,4 @@
-package com.somaprojexts.projectsashimi;
+package com.somaprojexts.projectsashimi.M0_AppStart;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class Fragment_NoAccDash extends Fragment {
+import com.somaprojexts.projectsashimi.M1_NoAccSoloMode.M1_Acti;
+import com.somaprojexts.projectsashimi.R;
 
-    private static final String TAG = "Fragment_NoAccDash";
+public class M0_EntryNoAcc_Frag extends Fragment {
+
+    private static final String TAG = "M0_EntryNoAcc_Frag";
 
     private TextView btn_goSolo;
     private TextView btn_goWithFriends;
@@ -26,9 +29,9 @@ public class Fragment_NoAccDash extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         // Creates chosen xml file -- stores it in a view
-        View view = inflater.inflate(R.layout.fragment_noaccdash_layout, container, false);
+        View view = inflater.inflate(R.layout.m0_entrynoacc_frag_layout, container, false);
 
-        Log.d(TAG, "OnCreate: started");
+        Log.i(TAG, "OnCreate: started");
 
         btn_goSolo = view.findViewById(R.id.btn_go_solo);
         btn_goWithFriends = view.findViewById(R.id.btn_go_with_friends);
@@ -41,7 +44,7 @@ public class Fragment_NoAccDash extends Fragment {
             public void onClick(View view) {
                 Log.i("btn_goSolo","clicked");
 
-                Intent intent = new Intent(getActivity(), Activity_NoAccSolo.class);
+                Intent intent = new Intent(getActivity(), M1_Acti.class);
                 startActivity(intent);
             }
         });

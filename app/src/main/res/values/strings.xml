@@ -1,22 +1,36 @@
 <resources>
     <string name="app_name">ProjectSashimi</string>
 
+    <!-- Dev Buttons -->
+    <string name="btn_devnext">Dev Next</string>
+    <string name="btn_devswiperight">Dev Swipe R</string>
+    <string name="btn_devswipeup">Dev Swipe U</string>
+    <!-- ========================= -->
 
-    <!-- fragment_noaccdash_layout -->
+    <!-- m0_entrynoacc_frag_layout -->
     <string name="header_0a">No Account Mode</string>
     <string name="prompt_0a">Eating Alone or With Friends?</string>
     <string name="btn_0a">GO SOLO</string>
     <string name="btn_0b">GO WITH\nFRIENDS</string>
     <!-- ========================= -->
 
-    <!-- activity_noaccsolo_layout -->
+    <!-- m1_acti_layout -->
     <string name="header_1a">No Account Solo Mode</string>
     <!-- ========================= -->
 
+    <!-- m1_prefselect_frag_layout -->
+    <string name="header_2a">Pref Select Page</string>
+    <string name="devnote_2a">To do:\nAdd Preference Selection Form</string>
+    <!-- ========================= -->
+
+    <!-- m1_swipedash_frag_layout-->
+    <string name="header_3a">Solo SwipeDash</string>
+    <string name="devnote_3a">To do:\nAdd Swipe Action</string>
+    <!-- ========================= -->
 
 
-    <!--
-    <string name=""></string>
-    -->
+    <!-- -->
+    <!-- <string name=""></string> -->
+    <!-- ========================= -->
 
 </resources>
