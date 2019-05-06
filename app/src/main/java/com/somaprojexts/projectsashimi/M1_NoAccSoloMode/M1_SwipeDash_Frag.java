@@ -17,6 +17,10 @@ public class M1_SwipeDash_Frag extends Fragment {
 
     private static final String TAG = "M1_SwipeDash_Frag";
 
+    private TextView btn_devswiperight;
+    private TextView btn_devswipeup;
+    private TextView btn_devswipedown;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -27,7 +31,32 @@ public class M1_SwipeDash_Frag extends Fragment {
         // Creates chosen xml file -- stores it in a view
         View view = inflater.inflate(R.layout.m1_swipedash_frag_layout, container, false);
 
-        Log.i(TAG, "onCreate: Finished");
+        btn_devswiperight = view.findViewById(R.id.btn_devswiperight);
+        btn_devswipeup = view.findViewById(R.id.btn_devswipeup);
+        btn_devswipedown = view.findViewById(R.id.btn_devswipedown);
+
+        btn_devswiperight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                M1_Acti.setFragment("M1_WinnerScreen_Frag");
+            }
+        });
+
+        btn_devswipeup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                M1_Acti.setFragment("M1_Details_Frag");
+            }
+        });
+
+        btn_devswipedown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                M1_Acti.setFragment("M1_Favorites_Frag");
+            }
+        });
+
+
 
         return view;
     }

@@ -1,3 +1,4 @@
+
 package com.somaprojexts.projectsashimi.M1_NoAccSoloMode;
 
 import android.os.Bundle;
@@ -12,10 +13,10 @@ import android.widget.TextView;
 
 import com.somaprojexts.projectsashimi.R;
 
-public class M1_PrefSelect_Frag extends Fragment {
+public class M1_WinnerScreen_Frag extends Fragment {
 
-    private static final String TAG = "M1_PrefSelect_Frag";
-    private TextView btn_devnext;
+    private static final String TAG = "";
+    private TextView btn_devback;
 
     @Nullable
     @Override
@@ -25,17 +26,20 @@ public class M1_PrefSelect_Frag extends Fragment {
         Log.i(TAG, "onCreate: Started");
 
         // Creates chosen xml file -- stores it in a view
-        View view = inflater.inflate(R.layout.m1_prefselect_frag_layout, container, false);
+        View view = inflater.inflate(R.layout.m1_winnerscreen_frag_layout, container, false);
 
-        btn_devnext = view.findViewById(R.id.btn_devnext);
 
-        btn_devnext.setOnClickListener(new View.OnClickListener() {
+        btn_devback = view.findViewById(R.id.btn_devback);
+
+        btn_devback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 M1_Acti.setFragment("M1_SwipeDash_Frag");
             }
         });
+
         return view;
+
     }
 
 

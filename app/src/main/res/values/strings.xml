@@ -5,6 +5,14 @@
     <string name="btn_devnext">Dev Next</string>
     <string name="btn_devswiperight">Dev Swipe R</string>
     <string name="btn_devswipeup">Dev Swipe U</string>
+    <string name="btn_devswipedown">Dev Swipe D</string>
+    <string name="btn_devback">Dev Back</string>
+    <!-- ========================= -->
+
+    <!-- Template Strings -->
+    <string name="temp_header">Header</string>
+    <string name="temp_devnote">Dev Note</string>
+    <string name="temp_devbtn">Button</string>
     <!-- ========================= -->
 
     <!-- m0_entrynoacc_frag_layout -->
@@ -27,6 +35,25 @@
     <string name="header_3a">Solo SwipeDash</string>
     <string name="devnote_3a">To do:\nAdd Swipe Action</string>
     <!-- ========================= -->
+
+
+
+    <!-- m1_winnerscreen_frag_layout -->
+    <string name="header_4a">Winner Screen</string>
+    <string name="devnote_4a">Maybe just add right swipes to a list in favorites?\n(Solo Mode Only)</string>
+    <!-- ========================= -->
+
+    <!-- m1_details_frag_layout -->
+    <string name="header_5a">Restaurant Details</string>
+    <string name="devnote_5a">Details on current Restaurant Card\n(Info from yelp?)</string>
+    <!-- ========================= -->
+
+    <!-- m1_favorites_frag_layout -->
+    <string name="header_6a">Favorites</string>
+    <string name="devnote_6a">Previously right swiped restaurants\n(Some kind of list format?)</string>
+    <!-- ========================= -->
+
+
 
 
     <!-- -->

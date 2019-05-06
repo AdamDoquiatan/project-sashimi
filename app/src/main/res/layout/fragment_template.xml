@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".M1_NoAccSoloMode.M1_SwipeDash_Frag">
+    tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
 
     <TextView
         android:id="@+id/title"
@@ -12,10 +12,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textSize="30sp"
-        android:text="@string/header_3a" />
+        android:text="@string/temp_header" />
 
     <TextView
-        android:id="@+id/devprompt"
+        android:id="@+id/devnote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -24,45 +24,20 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
-        android:text="@string/devnote_3a" />
+        android:text="@string/temp_devnote" />
 
     <TextView
-        android:id="@+id/btn_devswiperight"
+        android:id="@+id/btn_devnext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="50dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="50dp"
         android:padding="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:background="@drawable/textview_border"
-        android:text="@string/btn_devswiperight" />
-
-    <TextView
-        android:id="@+id/btn_devswipeup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="140dp"
-        android:padding="8dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:background="@drawable/textview_border"
-        android:text="@string/btn_devswipeup" />
-
-    <TextView
-        android:id="@+id/btn_devswipedown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:padding="8dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:background="@drawable/textview_border"
-        android:text="@string/btn_devswipedown" />
+        android:text="@string/temp_devbtn" />
 
 </RelativeLayout>

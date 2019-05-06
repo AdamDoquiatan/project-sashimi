@@ -35,7 +35,9 @@ public class M1_Acti extends AppCompatActivity {
         adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new M1_PrefSelect_Frag(), "M1_PrefSelect_Frag");
         adapter.addFragment(new M1_SwipeDash_Frag(), "M1_SwipeDash_Frag");
-
+        adapter.addFragment(new M1_WinnerScreen_Frag(), "M1_WinnerScreen_Frag");
+        adapter.addFragment(new M1_Details_Frag(), "M1_Details_Frag");
+        adapter.addFragment(new M1_Favorites_Frag(), "M1_Favorites_Frag");
 
         m1FragmentNameList = adapter.getFragmentNameList();
         viewPager.setAdapter(adapter);
