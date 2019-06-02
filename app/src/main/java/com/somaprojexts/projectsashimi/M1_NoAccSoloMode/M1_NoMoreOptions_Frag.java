@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.somaprojexts.projectsashimi.R;
 
-public class M1_WinnerScreen_Frag extends Fragment {
+public class M1_NoMoreOptions_Frag extends Fragment {
 
     private static final String TAG = "";
     private TextView btn_devback;
@@ -26,7 +26,7 @@ public class M1_WinnerScreen_Frag extends Fragment {
         Log.i(TAG, "onCreate: Started");
 
         // Creates chosen xml file -- stores it in a view
-        View view = inflater.inflate(R.layout.m1_winnerscreen_frag_layout, container, false);
+        View view = inflater.inflate(R.layout.m1_nomoreoptions_frag_popup, container, false);
 
 
         btn_devback = view.findViewById(R.id.btn_devback);

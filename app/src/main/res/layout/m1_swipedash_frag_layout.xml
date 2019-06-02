@@ -6,6 +6,18 @@
     tools:context=".M1_NoAccSoloMode.M1_SwipeDash_Frag">
 
     <TextView
+        android:id="@+id/btn_devnomoreoptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/textview_border"
+        android:padding="8dp"
+        android:text="@string/btn_devnomoreoptions"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

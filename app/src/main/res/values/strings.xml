@@ -7,6 +7,7 @@
     <string name="btn_devswipeup">Dev Swipe U</string>
     <string name="btn_devswipedown">Dev Swipe D</string>
     <string name="btn_devback">Dev Back</string>
+    <string name="btn_devnomoreoptions">Dev No More Options</string>
     <!-- ========================= -->
 
     <!-- Template Strings -->
@@ -38,9 +39,9 @@
 
 
 
-    <!-- m1_winnerscreen_frag_layout -->
-    <string name="header_4a">Winner Screen</string>
-    <string name="devnote_4a">Maybe just add right swipes to a list in favorites?\n(Solo Mode Only)</string>
+    <!-- m1_nomoreoptions_frag_popup -->
+    <string name="header_4a">Expand Search or Go to Favorites</string>
+    <string name="devnote_4a">This frag should pop up over swipedash screen</string>
     <!-- ========================= -->
 
     <!-- m1_details_frag_layout -->
