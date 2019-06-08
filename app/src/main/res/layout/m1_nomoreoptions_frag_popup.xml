@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
     tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="200dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
 
         <TextView
             android:id="@+id/header_4a"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
@@ -36,7 +30,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="200dp"
             android:text="@string/devnote_4a"
             android:textAlignment="center"
@@ -47,10 +40,11 @@
             android:id="@+id/btn_devback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/devnote_4a"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="2dp"
             android:background="@drawable/textview_border"
             android:padding="8dp"
             android:text="@string/btn_devback"
@@ -58,4 +52,4 @@
             android:textStyle="bold" />
 
     </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

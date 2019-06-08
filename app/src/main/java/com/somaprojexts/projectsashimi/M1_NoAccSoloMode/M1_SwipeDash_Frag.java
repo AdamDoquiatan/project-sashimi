@@ -64,7 +64,12 @@ public class M1_SwipeDash_Frag extends Fragment {
         btn_devnomoreoptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                M1_Acti.setFragment("M1_NoMoreOptions_Frag");
+                M1_NoMoreOptions_Frag dialog = new M1_NoMoreOptions_Frag();
+                dialog.setCancelable(true);
+                dialog.show(getFragmentManager(), "M1_NoMoreOptions_Frag");
+
+
+                //M1_Acti.show("M1_NoMoreOptions_Frag");
             }
         });
 
