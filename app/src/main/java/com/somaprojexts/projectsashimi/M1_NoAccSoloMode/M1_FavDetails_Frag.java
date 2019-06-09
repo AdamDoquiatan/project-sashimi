@@ -29,7 +29,7 @@ public class M1_FavDetails_Frag extends Fragment {
         // Creates chosen xml file -- stores it in a view
         View view = inflater.inflate(R.layout.m1_favdetails_frag_layout , container, false);
 
-        btn_showonmap = view.findViewById(R.id.btn_showonmap);
+        btn_showonmap = view.findViewById(R.id.btn_7a);
         btn_showonmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

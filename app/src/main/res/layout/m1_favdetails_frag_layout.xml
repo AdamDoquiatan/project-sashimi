@@ -27,7 +27,7 @@
         android:text="@string/devnote_7a" />
 
     <TextView
-        android:id="@+id/btn_showonmap"
+        android:id="@+id/btn_7a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -39,7 +39,7 @@
         android:layout_marginBottom="51dp"
         android:background="@drawable/textview_border"
         android:padding="8dp"
-        android:text="@string/btn_showonmap"
+        android:text="@string/btn_7a"
         android:textSize="20sp"
         android:textStyle="bold" />
 

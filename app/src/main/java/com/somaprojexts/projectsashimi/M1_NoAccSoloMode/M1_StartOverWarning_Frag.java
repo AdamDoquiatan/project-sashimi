@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.somaprojexts.projectsashimi.M0_AppStart.M0_EntryNoAcc_Frag;
@@ -20,6 +21,7 @@ public class M1_StartOverWarning_Frag extends DialogFragment {
     private static final String TAG = "M1_StartOverWarn_Frag";
     private TextView btn_4a;
     private TextView btn_4b;
+    private ImageView closeTrigger;
 
     @Nullable
     @Override
@@ -45,6 +47,14 @@ public class M1_StartOverWarning_Frag extends DialogFragment {
         btn_4b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dismiss();
+            }
+        });
+
+        closeTrigger = view.findViewById(R.id.closeTrigger);
+        closeTrigger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dismiss();
             }
         });

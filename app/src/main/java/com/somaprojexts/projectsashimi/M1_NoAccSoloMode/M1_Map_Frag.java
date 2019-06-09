@@ -29,7 +29,7 @@ public class M1_Map_Frag extends Fragment {
         // Creates chosen xml file -- stores it in a view
         View view = inflater.inflate(R.layout.m1_map_frag_layout , container, false);
 
-        btn_startover = view.findViewById(R.id.btn_startover);
+        btn_startover = view.findViewById(R.id.btn_8a);
         btn_startover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

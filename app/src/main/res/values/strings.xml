@@ -55,16 +55,16 @@
     <string name="devnote_6a">Previously right swiped restaurants\n(Some kind of list format?)</string>
     <!-- ========================= -->
 
-    <!-- m1_details_frag_layout -->
+    <!-- m1_favdetails_frag_layout -->
     <string name="header_7a">Favorite Restaurant Details</string>
-    <string name="devnote_7a">Details on current Restaurant Card\n(Info from yelp?)</string>
-    <string name="btn_showonmap">Show on Map</string>
+    <string name="devnote_7a">Details on selected favorited restaurant\n(Info from yelp?)</string>
+    <string name="btn_7a">Show on Map</string>
     <!-- ========================= -->
 
     <!-- m1_map_frag_layout -->
     <string name="header_8a">Map</string>
     <string name="devnote_8a">Map of chosen restaurant w/ user location </string>
-    <string name="btn_startover">Start Over</string>
+    <string name="btn_8a">Start Over</string>
     <!-- ========================= -->
 
     <!-- m1_startoverwarning_frag_layout -->

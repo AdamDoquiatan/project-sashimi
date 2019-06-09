@@ -70,7 +70,6 @@ public class M1_SwipeDash_Frag extends Fragment {
             }
         });
 
-
         return view;
     }
 
