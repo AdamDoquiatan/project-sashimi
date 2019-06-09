@@ -28,7 +28,6 @@ public class M1_PrefSelect_Frag extends Fragment {
         View view = inflater.inflate(R.layout.m1_prefselect_frag_layout, container, false);
 
         btn_devnext = view.findViewById(R.id.btn_devnext);
-
         btn_devnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

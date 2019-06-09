@@ -1,27 +1,23 @@
 
 package com.somaprojexts.projectsashimi.M1_NoAccSoloMode;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.TextView;
 
+import com.somaprojexts.projectsashimi.M0_AppStart.M0_EntryNoAcc_Frag;
 import com.somaprojexts.projectsashimi.R;
 
-public class M1_NoMoreOptions_Frag extends DialogFragment {
+public class M1_StartOverWarning_Frag extends DialogFragment {
 
-    private static final String TAG = "M1_NoMoreOptions_Frag";
+    private static final String TAG = "M1_StartOverWarn_Frag";
     private TextView btn_4a;
     private TextView btn_4b;
 
@@ -33,26 +29,25 @@ public class M1_NoMoreOptions_Frag extends DialogFragment {
         Log.i(TAG, "onCreate: Started");
 
         // Creates chosen xml file -- stores it in a view
-        View view = inflater.inflate(R.layout.m1_nomoreoptions_frag_popup, container, false);
+        View view = inflater.inflate(R.layout.m1_startoverwarning_frag_popup, container, false);
 
-        btn_4a = view.findViewById(R.id.btn_4a);
+        btn_4a = view.findViewById(R.id.btn_9a);
         btn_4a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
-                M1_Acti.setFragment("M1_Favorites_Frag");
+                Intent intent = new Intent(getActivity(), M0_EntryNoAcc_Frag.class);
+                startActivity(intent);
             }
         });
 
-        btn_4b = view.findViewById(R.id.btn_4b);
+        btn_4b = view.findViewById(R.id.btn_9b);
         btn_4b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
         });
-
-
 
         return view;
     }

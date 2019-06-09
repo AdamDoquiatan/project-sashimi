@@ -67,9 +67,6 @@ public class M1_SwipeDash_Frag extends Fragment {
                 M1_NoMoreOptions_Frag dialog = new M1_NoMoreOptions_Frag();
                 dialog.setCancelable(true);
                 dialog.show(getFragmentManager(), "M1_NoMoreOptions_Frag");
-
-
-                //M1_Acti.show("M1_NoMoreOptions_Frag");
             }
         });
 

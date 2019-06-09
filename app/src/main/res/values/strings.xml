@@ -8,6 +8,7 @@
     <string name="btn_devswipedown">Dev Swipe D</string>
     <string name="btn_devback">Dev Back</string>
     <string name="btn_devnomoreoptions">Dev No More Options</string>
+    <string name="btn_devselectrestaurant">Dev Select Restaurant</string>
     <!-- ========================= -->
 
     <!-- Template Strings -->
@@ -37,11 +38,11 @@
     <string name="devnote_3a">To do:\nAdd Swipe Action</string>
     <!-- ========================= -->
 
-
-
     <!-- m1_nomoreoptions_frag_popup -->
     <string name="header_4a">Expand Search or Go to Favorites</string>
-    <string name="devnote_4a">This frag should pop up over swipedash screen</string>
+    <string name="devnote_4a">Search range expand widget here</string>
+    <string name="btn_4a">Go to Favorites</string>
+    <string name="btn_4b">OK</string>
     <!-- ========================= -->
 
     <!-- m1_details_frag_layout -->
@@ -54,8 +55,24 @@
     <string name="devnote_6a">Previously right swiped restaurants\n(Some kind of list format?)</string>
     <!-- ========================= -->
 
+    <!-- m1_details_frag_layout -->
+    <string name="header_7a">Favorite Restaurant Details</string>
+    <string name="devnote_7a">Details on current Restaurant Card\n(Info from yelp?)</string>
+    <string name="btn_showonmap">Show on Map</string>
+    <!-- ========================= -->
 
+    <!-- m1_map_frag_layout -->
+    <string name="header_8a">Map</string>
+    <string name="devnote_8a">Map of chosen restaurant w/ user location </string>
+    <string name="btn_startover">Start Over</string>
+    <!-- ========================= -->
 
+    <!-- m1_startoverwarning_frag_layout -->
+    <string name="header_9a">Are you sure you want to start over?</string>
+    <string name="devnote_9a">Data will be lost.</string>
+    <string name="btn_9a">Yes</string>
+    <string name="btn_9b">No</string>
+    <!-- ========================= -->
 
     <!-- -->
     <!-- <string name=""></string> -->

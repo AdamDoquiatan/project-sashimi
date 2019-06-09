@@ -6,16 +6,16 @@
     tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
 
     <TextView
-        android:id="@+id/header_6a"
+        android:id="@+id/header_7a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textSize="30sp"
-        android:text="@string/header_6a" />
+        android:text="@string/header_7a" />
 
     <TextView
-        android:id="@+id/devnote_6a"
+        android:id="@+id/devnote_7a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -24,22 +24,22 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
-        android:text="@string/devnote_6a" />
+        android:text="@string/devnote_7a" />
 
     <TextView
-        android:id="@+id/btn_devselectrestaurant"
+        android:id="@+id/btn_showonmap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="28dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginRight="178dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginRight="283dp"
+        android:layout_marginBottom="51dp"
         android:background="@drawable/textview_border"
         android:padding="8dp"
-        android:text="@string/btn_devselectrestaurant"
+        android:text="@string/btn_showonmap"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -49,12 +49,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginRight="33dp"
+        android:layout_marginBottom="51dp"
         android:background="@drawable/textview_border"
         android:padding="8dp"
         android:text="@string/btn_devback"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+
 
 </RelativeLayout>

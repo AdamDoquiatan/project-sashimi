@@ -38,6 +38,8 @@ public class M1_Acti extends AppCompatActivity {
         adapter.addFragment(new M1_NoMoreOptions_Frag(), "M1_NoMoreOptions_Frag");
         adapter.addFragment(new M1_Details_Frag(), "M1_Details_Frag");
         adapter.addFragment(new M1_Favorites_Frag(), "M1_Favorites_Frag");
+        adapter.addFragment(new M1_FavDetails_Frag(), "M1_FavDetails_Frag");
+        adapter.addFragment(new M1_Map_Frag(), "M1_Map_Frag");
 
         m1FragmentNameList = adapter.getFragmentNameList();
         viewPager.setAdapter(adapter);

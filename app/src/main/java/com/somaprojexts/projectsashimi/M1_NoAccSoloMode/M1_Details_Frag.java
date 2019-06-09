@@ -15,7 +15,7 @@ import com.somaprojexts.projectsashimi.R;
 
 public class M1_Details_Frag extends Fragment {
 
-    private static final String TAG = "";
+    private static final String TAG = "M1_Details_Frag";
     private TextView btn_devback;
 
     @Nullable
