@@ -1,19 +1,20 @@
 package com.somaprojexts.projectsashimi.M1_NoAccSoloMode;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.somaprojexts.projectsashimi.Adapters.SectionsStatePagerAdapter;
 import com.somaprojexts.projectsashimi.R;
 
 import java.util.List;
 
-public class M1_Acti extends AppCompatActivity {
+public class M1_Activity extends AppCompatActivity {
 
-    private static final String TAG = "M1_Acti.java";
+    private static final String TAG = "M1_Activity.java";
 
     protected static ViewPager m1ViewPager;
     private static SectionsStatePagerAdapter adapter;
@@ -25,7 +26,7 @@ public class M1_Acti extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Started.");
 
-        setContentView(R.layout.m1_acti_layout);
+        setContentView(R.layout.m1_activity_layout);
 
         m1ViewPager = findViewById(R.id.m1_fragment_container);
         setupViewPager(m1ViewPager);

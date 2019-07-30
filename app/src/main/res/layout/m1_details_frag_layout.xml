@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textSize="30sp"
-        android:text="@string/header_5a" />
+        android:text="@string/header_5a"/>
 
     <TextView
         android:id="@+id/devnote_5a"
@@ -24,7 +24,7 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
-        android:text="@string/devnote_5a" />
+        android:text="@string/devnote_5a"/>
 
     <TextView
         android:id="@+id/btn_devback"
@@ -38,6 +38,6 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:background="@drawable/textview_border"
-        android:text="@string/btn_devback" />
+        android:text="@string/btn_devback"/>
 
 </RelativeLayout>

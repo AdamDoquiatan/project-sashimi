@@ -5,10 +5,6 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +13,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.somaprojexts.projectsashimi.R;
 
@@ -42,7 +42,7 @@ public class M1_NoMoreOptions_Frag extends DialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
-                M1_Acti.setFragment("M1_Favorites_Frag");
+                M1_Activity.setFragment("M1_Favorites_Frag");
             }
         });
 

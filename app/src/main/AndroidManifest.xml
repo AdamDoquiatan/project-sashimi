@@ -11,15 +11,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".M0_AppStart.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".M1_NoAccSoloMode.M1_Acti"></activity>
-
-
+        <activity android:name=".M1_NoAccSoloMode.M1_Activity"></activity>
     </application>
 
 </manifest>

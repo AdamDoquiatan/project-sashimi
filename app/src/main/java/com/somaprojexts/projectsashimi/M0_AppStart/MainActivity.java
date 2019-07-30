@@ -1,9 +1,10 @@
 package com.somaprojexts.projectsashimi.M0_AppStart;
-
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.somaprojexts.projectsashimi.R;
 import com.somaprojexts.projectsashimi.Adapters.SectionsStatePagerAdapter;
@@ -17,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected static ViewPager m0ViewPager;
     private static SectionsStatePagerAdapter adapter;
     private static List<String> m0FragmentNameList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,4 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "SetFragment");
         this.m0ViewPager.setCurrentItem(m0FragmentNameList.indexOf(fragmentName));
     }
-
-
 }

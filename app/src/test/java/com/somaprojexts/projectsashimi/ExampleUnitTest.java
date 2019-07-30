@@ -1,7 +1,6 @@
 package com.somaprojexts.projectsashimi;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**
