@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,45 +9,58 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/header_0a"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:text="@string/header_0a" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_wrapHeight="108"
+        tools:layout_conversion_wrapWidth="638" />
 
     <TextView
         android:id="@+id/prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:text="@string/prompt_0a" />
+        android:layout_marginTop="8dp"
+        android:text="@string/prompt_0a"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:layout_conversion_wrapHeight="50"
+        tools:layout_conversion_wrapWidth="489" />
 
     <TextView
         android:id="@+id/btn_go_solo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/prompt"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="201dp"
+        android:layout_marginTop="200dp"
         android:background="@drawable/textview_border"
         android:padding="8dp"
         android:text="@string/btn_0a"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prompt"
+        tools:layout_conversion_wrapHeight="127"
+        tools:layout_conversion_wrapWidth="304" />
 
     <TextView
         android:id="@+id/btn_go_with_friends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/prompt"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="201dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/textview_border"
         android:padding="8dp"
         android:text="@string/btn_0b"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prompt"
+        tools:layout_conversion_wrapHeight="202"
+        tools:layout_conversion_wrapWidth="299" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,9 +3,6 @@ package com.somaprojexts.projectsashimi.Adapters;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-
-import com.somaprojexts.projectsashimi.M1_NoAccSoloMode.M1_PrefSelect_Frag;
-
 import java.util.ArrayList;
 import java.util.List;
 

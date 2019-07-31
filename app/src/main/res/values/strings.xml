@@ -74,8 +74,6 @@
     <string name="btn_9b">No</string>
     <!-- ========================= -->
 
-    <!-- -->
-    <!-- <string name=""></string> -->
-    <!-- ========================= -->
+    <string name="placeholder">Placeholder</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package com.somaprojexts.projectsashimi.M1_NoAccSoloMode;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.somaprojexts.projectsashimi.M0_AppStart.MainActivity;
 import com.somaprojexts.projectsashimi.R;
 
+@SuppressWarnings("ALL")
 public class M1_SwipeDash_Frag extends Fragment {
 
     private static final String TAG = "M1_SwipeDash_Frag";
@@ -73,6 +72,4 @@ public class M1_SwipeDash_Frag extends Fragment {
 
         return view;
     }
-
-
 }

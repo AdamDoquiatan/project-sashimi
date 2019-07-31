@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/temp_header"
         android:textSize="30sp"
-        android:text="@string/temp_header" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_wrapHeight="108"
+        tools:layout_conversion_wrapWidth="255" />
 
     <TextView
         android:id="@+id/devnote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/title"
         android:layout_marginTop="200dp"
-        android:textSize="20sp"
+        android:text="@string/temp_devnote"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
-        android:text="@string/temp_devnote" />
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:layout_conversion_wrapHeight="71"
+        tools:layout_conversion_wrapWidth="214" />
 
     <TextView
         android:id="@+id/btn_devnext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/textview_border"
         android:padding="8dp"
+        android:text="@string/temp_devbtn"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:background="@drawable/textview_border"
-        android:text="@string/temp_devbtn" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_conversion_wrapHeight="113"
+        tools:layout_conversion_wrapWidth="203" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
