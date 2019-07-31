@@ -50,5 +50,4 @@ public class M1_Activity extends AppCompatActivity {
         Log.i(TAG, "SetFragment");
         m1ViewPager.setCurrentItem(m1FragmentNameList.indexOf(fragmentName));
     }
-
 }

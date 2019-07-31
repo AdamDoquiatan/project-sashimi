@@ -13,8 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.somaprojexts.projectsashimi.R;
+import com.somaprojexts.projectsashimi.card.Card;
+import com.somaprojexts.projectsashimi.card.CardStackAdapter;
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
+import com.yuyakaido.android.cardstackview.CardStackView;
 
-@SuppressWarnings("ALL")
 public class M1_SwipeDash_Frag extends Fragment {
 
     private static final String TAG = "M1_SwipeDash_Frag";
@@ -23,12 +26,17 @@ public class M1_SwipeDash_Frag extends Fragment {
     private TextView btn_devswipeup;
     private TextView btn_devswipedown;
     private TextView btn_devnomoreoptions;
+    private CardStackView cardStackView;
+    private Card[] cards = {
+            new Card("Daniel Hodek", R.drawable.photo_1),
+            new Card("Lena Shipseki", R.drawable.photo_2),
+            new Card("Perry Centaur", R.drawable.photo_3)
+    };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         Log.i(TAG, "onCreate: Started");
 
         // Creates chosen xml file -- stores it in a view
@@ -69,6 +77,10 @@ public class M1_SwipeDash_Frag extends Fragment {
                 dialog.show(getFragmentManager(), "M1_NoMoreOptions_Frag");
             }
         });
+
+        cardStackView = view.findViewById(R.id.card_stack);
+        cardStackView.setLayoutManager(new CardStackLayoutManager(getContext()));
+        cardStackView.setAdapter(new CardStackAdapter(getContext(), cards));
 
         return view;
     }
