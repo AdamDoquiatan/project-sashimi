@@ -19,13 +19,13 @@
         android:layout_marginBottom="16dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        app:layout_constraintBottom_toTopOf="@+id/btn_devnomoreoptions"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dev_nomoreoptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
-        android:id="@+id/btn_devnomoreoptions"
+        android:id="@+id/btn_dev_nomoreoptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -34,7 +34,7 @@
         android:text="@string/btn_devnomoreoptions"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_devswipeup"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dev_swipeup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/btn_devswiperight"
+        android:id="@+id/btn_dev_swiperight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -64,7 +64,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/btn_devswipeup"
+        android:id="@+id/btn_dev_swipeup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
@@ -78,7 +78,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/btn_devswipedown"
+        android:id="@+id/btn_dev_swipedown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

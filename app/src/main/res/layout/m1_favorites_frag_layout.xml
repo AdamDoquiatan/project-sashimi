@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/devnote_6a"
+        android:id="@+id/dev_note_6a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/header_6a" />
 
     <TextView
-        android:id="@+id/btn_devselectrestaurant"
+        android:id="@+id/btn_dev_selectrestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/btn_devback"
+        android:id="@+id/btn_dev_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

@@ -1,9 +1,8 @@
-
 package com.somaprojexts.projectsashimi;
 
 import androidx.fragment.app.Fragment;
 
-public class Fragment_Template extends Fragment {
+public class FragmentTemplate extends Fragment {
 /**
     private static final String TAG = "";
     private TextView btn;
@@ -29,8 +28,6 @@ public class Fragment_Template extends Fragment {
         });
 
         return view;
-
     }
-
 **/
 }

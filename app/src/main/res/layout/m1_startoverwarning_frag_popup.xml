@@ -7,7 +7,7 @@
     tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
 
     <ImageView
-        android:id="@+id/closeTrigger"
+        android:id="@+id/close_trigger"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/placeholder"
@@ -47,7 +47,7 @@
             tools:layout_conversion_wrapWidth="0" />
 
         <TextView
-            android:id="@+id/devnote_9a"
+            android:id="@+id/dev_note_9a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"

@@ -20,21 +20,22 @@ import com.somaprojexts.projectsashimi.R;
 public class M1_StartOverWarning_Frag extends DialogFragment {
 
     private static final String TAG = "M1_StartOverWarn_Frag";
+
     private TextView btn_4a;
     private TextView btn_4b;
-    private ImageView closeTrigger;
+    private ImageView close_trigger;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         Log.i(TAG, "onCreate: Started");
-
-        // Creates chosen xml file -- stores it in a view
-        View view = inflater.inflate(R.layout.m1_startoverwarning_frag_popup, container, false);
+        View view = inflater.inflate(R.layout.m1_startoverwarning_frag_popup,
+                container, false);
 
         btn_4a = view.findViewById(R.id.btn_9a);
+        btn_4b = view.findViewById(R.id.btn_9b);
+
         btn_4a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +45,6 @@ public class M1_StartOverWarning_Frag extends DialogFragment {
             }
         });
 
-        btn_4b = view.findViewById(R.id.btn_9b);
         btn_4b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,8 +52,8 @@ public class M1_StartOverWarning_Frag extends DialogFragment {
             }
         });
 
-        closeTrigger = view.findViewById(R.id.closeTrigger);
-        closeTrigger.setOnClickListener(new View.OnClickListener() {
+        close_trigger = view.findViewById(R.id.close_trigger);
+        close_trigger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
@@ -66,7 +66,9 @@ public class M1_StartOverWarning_Frag extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // STYLE_NO_FRAME means that I will provide
+        // my own layout and style for the dialog (R.style.DialogFrag)
         setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogFrag);
-        // STYLE_NO_FRAME means that I will provide my own layout and style for the dialog (R.style.DialogFrag)
     }
 }

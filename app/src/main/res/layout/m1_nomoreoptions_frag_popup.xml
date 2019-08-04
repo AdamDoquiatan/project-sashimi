@@ -7,7 +7,7 @@
     tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
 
     <ImageView
-        android:id="@+id/closeTrigger"
+        android:id="@+id/close_trigger"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/placeholder"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/devnote_4a"
+            android:id="@+id/dev_note_4a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
@@ -70,7 +70,6 @@
             android:text="@string/btn_4a"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:chainUseRtl="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_4b"
             app:layout_constraintHorizontal_bias="0.5"

@@ -17,8 +17,8 @@ import com.somaprojexts.projectsashimi.R;
 public class M1_Favorites_Frag extends Fragment {
 
     private static final String TAG = "M1_Favorites_Frag";
-    private TextView btn_devback;
-    private TextView btn_devselectrestaurant;
+    private TextView btn_dev_back;
+    private TextView btn_dev_selectrestaurant;
 
     @Nullable
     @Override
@@ -31,16 +31,16 @@ public class M1_Favorites_Frag extends Fragment {
         View view = inflater.inflate(R.layout.m1_favorites_frag_layout , container, false);
 
 
-        btn_devback = view.findViewById(R.id.btn_devback);
-        btn_devback.setOnClickListener(new View.OnClickListener() {
+        btn_dev_back = view.findViewById(R.id.btn_dev_back);
+        btn_dev_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 M1_Activity.setFragment("M1_SwipeDash_Frag");
             }
         });
 
-        btn_devselectrestaurant = view.findViewById(R.id.btn_devselectrestaurant);
-        btn_devselectrestaurant.setOnClickListener(new View.OnClickListener() {
+        btn_dev_selectrestaurant = view.findViewById(R.id.btn_dev_selectrestaurant);
+        btn_dev_selectrestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 M1_Activity.setFragment("M1_FavDetails_Frag");

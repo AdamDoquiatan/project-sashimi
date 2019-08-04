@@ -20,23 +20,21 @@ public class M0_EntryNoAcc_Frag extends Fragment {
 
     private static final String TAG = "M0_EntryNoAcc_Frag";
 
-    private TextView btn_goSolo;
-    private TextView btn_goWithFriends;
+    private TextView btn_gosolo;
+    private TextView btn_gowithfriends;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        // Creates chosen xml file -- stores it in a view
-        View view = inflater.inflate(R.layout.m0_entrynoacc_frag_layout, container, false);
-
         Log.i(TAG, "OnCreate: started");
+        View view = inflater.inflate(R.layout.m0_entrynoacc_frag_layout,
+                container, false);
 
-        btn_goSolo = view.findViewById(R.id.btn_go_solo);
-        btn_goWithFriends = view.findViewById(R.id.btn_go_with_friends);
+        btn_gosolo = view.findViewById(R.id.btn_gosolo);
+        btn_gowithfriends = view.findViewById(R.id.btn_gowithfriends);
 
-        btn_goSolo.setOnClickListener(new View.OnClickListener() {
+        btn_gosolo.setOnClickListener(new View.OnClickListener() {
 
 
 
@@ -49,8 +47,8 @@ public class M0_EntryNoAcc_Frag extends Fragment {
             }
         });
 
+        btn_gowithfriends.setEnabled(false);
+
         return view;
     }
-
-
 }

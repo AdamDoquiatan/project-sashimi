@@ -20,7 +20,7 @@
         tools:layout_conversion_wrapWidth="157" />
 
     <TextView
-        android:id="@+id/devnote_8a"
+        android:id="@+id/dev_note_8a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -51,7 +51,7 @@
         tools:layout_conversion_wrapWidth="286" />
 
     <TextView
-        android:id="@+id/btn_devback"
+        android:id="@+id/btn_dev_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

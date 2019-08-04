@@ -1,5 +1,5 @@
 package com.somaprojexts.projectsashimi.M0_AppStart;
-;
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -7,38 +7,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.somaprojexts.projectsashimi.R;
-import com.somaprojexts.projectsashimi.Adapters.SectionsStatePagerAdapter;
+import com.somaprojexts.projectsashimi.adapter.SectionsStatePagerAdapter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class M0_Activity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "M0_Activity";
 
-    protected static ViewPager m0ViewPager;
+    private static ViewPager viewPager;
     private static SectionsStatePagerAdapter adapter;
-    private static List<String> m0FragmentNameList;
+    private static List<String> fragmentNameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: started");
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: Started");
 
-        m0ViewPager = findViewById(R.id.m0_fragment_container);
-        setupViewPager(m0ViewPager);
+        viewPager = findViewById(R.id.m0_fragment_container);
+        setupViewPager(viewPager);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new M0_EntryNoAcc_Frag(), "M0_EntryNoAcc_Frag");
 
-        m0FragmentNameList = adapter.getFragmentNameList();
+        fragmentNameList = adapter.getFragmentNameList();
         viewPager.setAdapter(adapter);
     }
 
     public void setFragment(String fragmentName) {
         Log.i(TAG, "SetFragment");
-        this.m0ViewPager.setCurrentItem(m0FragmentNameList.indexOf(fragmentName));
+        viewPager.setCurrentItem(fragmentNameList.indexOf(fragmentName));
     }
 }

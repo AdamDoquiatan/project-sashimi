@@ -17,7 +17,7 @@ import com.somaprojexts.projectsashimi.R;
 public class M1_Map_Frag extends Fragment {
 
     private static final String TAG = "M1_Map_Frag";
-    private TextView btn_devback;
+    private TextView btn_dev_back;
     private TextView btn_startover;
 
     @Nullable
@@ -40,8 +40,8 @@ public class M1_Map_Frag extends Fragment {
             }
         });
 
-        btn_devback = view.findViewById(R.id.btn_devback);
-        btn_devback.setOnClickListener(new View.OnClickListener() {
+        btn_dev_back = view.findViewById(R.id.btn_dev_back);
+        btn_dev_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 M1_Activity.setFragment("M1_Favorites_Frag");

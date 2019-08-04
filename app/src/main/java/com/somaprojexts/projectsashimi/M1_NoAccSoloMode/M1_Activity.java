@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.somaprojexts.projectsashimi.Adapters.SectionsStatePagerAdapter;
+import com.somaprojexts.projectsashimi.adapter.SectionsStatePagerAdapter;
 import com.somaprojexts.projectsashimi.R;
 
 import java.util.List;
@@ -16,20 +16,16 @@ public class M1_Activity extends AppCompatActivity {
 
     private static final String TAG = "M1_Activity.java";
 
-    protected static ViewPager m1ViewPager;
+    private static ViewPager viewPager;
     private static SectionsStatePagerAdapter adapter;
-    private static List<String> m1FragmentNameList;
+    private static List<String> fragmentNameList;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
-        Log.d(TAG, "onCreate: Started.");
-
+        Log.d(TAG, "onCreate: started");
         setContentView(R.layout.m1_activity_layout);
-
-        m1ViewPager = findViewById(R.id.m1_fragment_container);
-        setupViewPager(m1ViewPager);
+        viewPager = findViewById(R.id.m1_fragment_container);
+        setupViewPager(viewPager);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -42,12 +38,12 @@ public class M1_Activity extends AppCompatActivity {
         adapter.addFragment(new M1_FavDetails_Frag(), "M1_FavDetails_Frag");
         adapter.addFragment(new M1_Map_Frag(), "M1_Map_Frag");
 
-        m1FragmentNameList = adapter.getFragmentNameList();
+        fragmentNameList = adapter.getFragmentNameList();
         viewPager.setAdapter(adapter);
     }
 
     public static void setFragment(String fragmentName) {
         Log.i(TAG, "SetFragment");
-        m1ViewPager.setCurrentItem(m1FragmentNameList.indexOf(fragmentName));
+        viewPager.setCurrentItem(fragmentNameList.indexOf(fragmentName));
     }
 }

@@ -25,7 +25,7 @@ public class M1_NoMoreOptions_Frag extends DialogFragment {
     private static final String TAG = "M1_NoMoreOptions_Frag";
     private TextView btn_4a;
     private TextView btn_4b;
-    private ImageView closeTrigger;
+    private ImageView close_trigger;
 
     @Nullable
     @Override
@@ -54,8 +54,8 @@ public class M1_NoMoreOptions_Frag extends DialogFragment {
             }
         });
 
-        closeTrigger = view.findViewById(R.id.closeTrigger);
-        closeTrigger.setOnClickListener(new View.OnClickListener() {
+        close_trigger = view.findViewById(R.id.close_trigger);
+        close_trigger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();

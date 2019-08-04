@@ -5,7 +5,7 @@
     android:id="@+id/ConstraintLayou"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".M0_AppStart.MainActivity">
+    tools:context=".M0_AppStart.M0_Activity">
 
     <!-- Container for holding fragments -->
 

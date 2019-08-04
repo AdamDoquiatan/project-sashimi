@@ -22,15 +22,19 @@ public class M1_SwipeDash_Frag extends Fragment {
 
     private static final String TAG = "M1_SwipeDash_Frag";
 
-    private TextView btn_devswiperight;
-    private TextView btn_devswipeup;
-    private TextView btn_devswipedown;
-    private TextView btn_devnomoreoptions;
+    private TextView btn_dev_swiperight;
+    private TextView btn_dev_swipeup;
+    private TextView btn_dev_swipedown;
+    private TextView btn_dev_nomoreoptions;
+
     private CardStackView cardStackView;
     private Card[] cards = {
+            new Card("Luca", R.drawable.photo_4),
             new Card("Daniel Hodek", R.drawable.photo_1),
+            new Card("Luca", R.drawable.photo_4),
             new Card("Lena Shipseki", R.drawable.photo_2),
-            new Card("Perry Centaur", R.drawable.photo_3)
+            new Card("Luca", R.drawable.photo_4),
+            new Card("Perry Centaur", R.drawable.photo_3),
     };
 
     @Nullable
@@ -42,12 +46,12 @@ public class M1_SwipeDash_Frag extends Fragment {
         // Creates chosen xml file -- stores it in a view
         View view = inflater.inflate(R.layout.m1_swipedash_frag_layout, container, false);
 
-        btn_devswiperight = view.findViewById(R.id.btn_devswiperight);
-        btn_devswipeup = view.findViewById(R.id.btn_devswipeup);
-        btn_devswipedown = view.findViewById(R.id.btn_devswipedown);
-        btn_devnomoreoptions = view.findViewById(R.id.btn_devnomoreoptions);
+        btn_dev_swiperight = view.findViewById(R.id.btn_dev_swiperight);
+        btn_dev_swipeup = view.findViewById(R.id.btn_dev_swipeup);
+        btn_dev_swipedown = view.findViewById(R.id.btn_dev_swipedown);
+        btn_dev_nomoreoptions = view.findViewById(R.id.btn_dev_nomoreoptions);
 
-        btn_devswiperight.setOnClickListener(new View.OnClickListener() {
+        btn_dev_swiperight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast addedFavToast = Toast.makeText(getContext(), "Added to Favorites", Toast.LENGTH_SHORT);
@@ -55,21 +59,21 @@ public class M1_SwipeDash_Frag extends Fragment {
             }
         });
 
-        btn_devswipeup.setOnClickListener(new View.OnClickListener() {
+        btn_dev_swipeup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 M1_Activity.setFragment("M1_Details_Frag");
             }
         });
 
-        btn_devswipedown.setOnClickListener(new View.OnClickListener() {
+        btn_dev_swipedown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 M1_Activity.setFragment("M1_Favorites_Frag");
             }
         });
 
-        btn_devnomoreoptions.setOnClickListener(new View.OnClickListener() {
+        btn_dev_nomoreoptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 M1_NoMoreOptions_Frag dialog = new M1_NoMoreOptions_Frag();

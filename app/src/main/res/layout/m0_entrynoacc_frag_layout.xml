@@ -32,7 +32,7 @@
         tools:layout_conversion_wrapWidth="489" />
 
     <TextView
-        android:id="@+id/btn_go_solo"
+        android:id="@+id/btn_gosolo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -48,7 +48,7 @@
         tools:layout_conversion_wrapWidth="304" />
 
     <TextView
-        android:id="@+id/btn_go_with_friends"
+        android:id="@+id/btn_gowithfriends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
