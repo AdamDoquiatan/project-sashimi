@@ -24,14 +24,10 @@ public class M1_Favorites_Frag extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         Log.i(TAG, "onCreate: Started");
-
-        // Creates chosen xml file -- stores it in a view
         View view = inflater.inflate(R.layout.m1_favorites_frag_layout , container, false);
-
-
         btn_dev_back = view.findViewById(R.id.btn_dev_back);
+
         btn_dev_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -4,13 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".M1_NoAccSoloMode.M1_PrefSelect_Frag">
+
+    <Button
+        android:id="@+id/btn_dev_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/btn_devback"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_8a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:includeFontPadding="false"
+        android:text="@string/btn_8a"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dev_note_8a" />
 
     <TextView
         android:id="@+id/header_8a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/header_8a"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,48 +46,18 @@
         android:id="@+id/dev_note_8a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/devnote_8a"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_8a"
-        tools:layout_conversion_wrapHeight="71"
-        tools:layout_conversion_wrapWidth="1008" />
-
-    <TextView
-        android:id="@+id/btn_8a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/textview_border"
-        android:padding="8dp"
-        android:text="@string/btn_8a"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_conversion_wrapHeight="113"
-        tools:layout_conversion_wrapWidth="286" />
-
-    <TextView
-        android:id="@+id/btn_dev_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/textview_border"
-        android:padding="8dp"
-        android:text="@string/btn_devback"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_conversion_wrapHeight="113"
-        tools:layout_conversion_wrapWidth="263" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_wrapHeight="71"
+        tools:layout_conversion_wrapWidth="1008" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

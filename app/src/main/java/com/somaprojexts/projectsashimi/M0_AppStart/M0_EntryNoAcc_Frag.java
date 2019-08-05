@@ -31,7 +31,7 @@ public class M0_EntryNoAcc_Frag extends Fragment {
         View view = inflater.inflate(R.layout.m0_entrynoacc_frag_layout,
                 container, false);
 
-        btn_gosolo = view.findViewById(R.id.btn_gosolo);
+        btn_gosolo = view.findViewById(R.id.padding);
         btn_gowithfriends = view.findViewById(R.id.btn_gowithfriends);
 
         btn_gosolo.setOnClickListener(new View.OnClickListener() {

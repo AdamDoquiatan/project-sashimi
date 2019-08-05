@@ -46,7 +46,7 @@ public class M1_SwipeDash_Frag extends Fragment {
         // Creates chosen xml file -- stores it in a view
         View view = inflater.inflate(R.layout.m1_swipedash_frag_layout, container, false);
 
-        btn_dev_swiperight = view.findViewById(R.id.btn_dev_swiperight);
+        btn_dev_swiperight = view.findViewById(R.id.btn_dev_nomoreoptions);
         btn_dev_swipeup = view.findViewById(R.id.btn_dev_swipeup);
         btn_dev_swipedown = view.findViewById(R.id.btn_dev_swipedown);
         btn_dev_nomoreoptions = view.findViewById(R.id.btn_dev_nomoreoptions);

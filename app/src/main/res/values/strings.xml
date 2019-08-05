@@ -69,7 +69,7 @@
 
     <!-- m1_startoverwarning_frag_layout -->
     <string name="header_9a">Are you sure you want to start over?</string>
-    <string name="devnote_9a">Data will be lost.</string>
+    <string name="devnote_9a">Data will be lost</string>
     <string name="btn_9a">Yes</string>
     <string name="btn_9b">No</string>
     <!-- ========================= -->
