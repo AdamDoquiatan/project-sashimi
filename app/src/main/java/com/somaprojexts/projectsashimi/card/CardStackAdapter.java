@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.somaprojexts.projectsashimi.R;
 
+import java.util.ArrayList;
+
 public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder> {
 
     private Context context;
-    private Card[] cards;
+    private ArrayList<Card> cards;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -28,7 +30,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         }
     }
 
-    public CardStackAdapter(Context context, Card[] cards) {
+    public CardStackAdapter(Context context, ArrayList<Card> cards) {
         this.context = context;
         this.cards = cards;
     }
@@ -43,12 +45,12 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        viewHolder.name.setText(cards[position].getName());
-        viewHolder.image.setImageDrawable(context.getDrawable(cards[position].getImage()));
+        viewHolder.name.setText(cards.get(position).getName());
+        viewHolder.image.setImageDrawable(cards.get(position).getImage());
     }
 
     @Override
     public int getItemCount() {
-        return cards.length;
+        return cards.size();
     }
 }

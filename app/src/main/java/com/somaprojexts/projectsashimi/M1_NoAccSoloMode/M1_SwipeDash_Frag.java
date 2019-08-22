@@ -18,6 +18,8 @@ import com.somaprojexts.projectsashimi.card.CardStackAdapter;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackView;
 
+import java.util.ArrayList;
+
 public class M1_SwipeDash_Frag extends Fragment {
 
     private static final String TAG = "M1_SwipeDash_Frag";
@@ -28,14 +30,7 @@ public class M1_SwipeDash_Frag extends Fragment {
     private TextView btn_dev_nomoreoptions;
 
     private CardStackView cardStackView;
-    private Card[] cards = {
-            new Card("Luca", R.drawable.photo_4),
-            new Card("Daniel Hodek", R.drawable.photo_1),
-            new Card("Luca", R.drawable.photo_4),
-            new Card("Lena Shipseki", R.drawable.photo_2),
-            new Card("Luca", R.drawable.photo_4),
-            new Card("Perry Centaur", R.drawable.photo_3),
-    };
+    private CardStackAdapter cardStackAdapter;
 
     @Nullable
     @Override
@@ -82,10 +77,15 @@ public class M1_SwipeDash_Frag extends Fragment {
             }
         });
 
+        cardStackAdapter = new CardStackAdapter(getContext(), ((M1_Activity) getContext()).getCards());
         cardStackView = view.findViewById(R.id.card_stack);
         cardStackView.setLayoutManager(new CardStackLayoutManager(getContext()));
-        cardStackView.setAdapter(new CardStackAdapter(getContext(), cards));
+        cardStackView.setAdapter(cardStackAdapter);
 
         return view;
+    }
+
+    public CardStackAdapter getCardStackAdapter() {
+        return cardStackAdapter;
     }
 }

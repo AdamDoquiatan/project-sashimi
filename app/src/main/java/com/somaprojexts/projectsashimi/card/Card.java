@@ -1,11 +1,13 @@
 package com.somaprojexts.projectsashimi.card;
 
+import android.graphics.drawable.Drawable;
+
 public class Card {
 
     private String name;
-    private int image;
+    private Drawable image;
 
-    public Card(String name, int image) {
+    public Card(String name, Drawable image) {
         this.name = name;
         this.image = image;
     }
@@ -14,7 +16,7 @@ public class Card {
         return name;
     }
 
-    public int getImage() {
+    public Drawable getImage() {
         return image;
     }
 }

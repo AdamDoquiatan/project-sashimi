@@ -1,4 +1,4 @@
-package com.somaprojexts.projectsashimi.adapter;
+package com.somaprojexts.projectsashimi.util;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,6 +28,10 @@ public class SectionsStatePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         return fragmentList.get(position);
+    }
+
+    public Fragment getItem(String fragmentTitle) {
+        return fragmentList.get(fragmentNameList.indexOf(fragmentTitle));
     }
 
     @Override
