@@ -1,6 +1,7 @@
 package com.somaprojexts.projectsashimi.M0_AppStart;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -29,11 +30,16 @@ public class M0_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.m0_fragment_container);
         setupViewPager(viewPager);
 
-        // Request permissions
-        requestPermissions(new String[]{
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-        }, 1);
+        if (checkSelfPermission(
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            }, 0);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {

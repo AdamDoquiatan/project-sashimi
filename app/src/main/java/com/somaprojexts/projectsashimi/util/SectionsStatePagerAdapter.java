@@ -30,10 +30,6 @@ public class SectionsStatePagerAdapter extends FragmentStatePagerAdapter {
         return fragmentList.get(position);
     }
 
-    public Fragment getItem(String fragmentTitle) {
-        return fragmentList.get(fragmentNameList.indexOf(fragmentTitle));
-    }
-
     @Override
     public int getCount() {
         return fragmentNameList.size();

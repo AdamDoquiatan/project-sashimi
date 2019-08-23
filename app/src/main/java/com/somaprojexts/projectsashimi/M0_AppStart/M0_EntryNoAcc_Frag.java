@@ -41,7 +41,6 @@ public class M0_EntryNoAcc_Frag extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.i("btn_goSolo","clicked");
-
                 Intent intent = new Intent(getActivity(), M1_Activity.class);
                 startActivity(intent);
             }

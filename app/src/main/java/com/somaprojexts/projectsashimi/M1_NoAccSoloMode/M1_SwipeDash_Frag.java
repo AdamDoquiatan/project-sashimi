@@ -13,24 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.somaprojexts.projectsashimi.R;
-import com.somaprojexts.projectsashimi.card.Card;
 import com.somaprojexts.projectsashimi.card.CardStackAdapter;
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackView;
-
-import java.util.ArrayList;
 
 public class M1_SwipeDash_Frag extends Fragment {
 
     private static final String TAG = "M1_SwipeDash_Frag";
 
+    private CardStackView card_stack;
     private TextView btn_dev_swiperight;
     private TextView btn_dev_swipeup;
     private TextView btn_dev_swipedown;
     private TextView btn_dev_nomoreoptions;
-
-    private CardStackView cardStackView;
-    private CardStackAdapter cardStackAdapter;
 
     @Nullable
     @Override
@@ -41,7 +35,7 @@ public class M1_SwipeDash_Frag extends Fragment {
         // Creates chosen xml file -- stores it in a view
         View view = inflater.inflate(R.layout.m1_swipedash_frag_layout, container, false);
 
-        btn_dev_swiperight = view.findViewById(R.id.btn_dev_nomoreoptions);
+        btn_dev_swiperight = view.findViewById(R.id.btn_dev_swiperight4);
         btn_dev_swipeup = view.findViewById(R.id.btn_dev_swipeup);
         btn_dev_swipedown = view.findViewById(R.id.btn_dev_swipedown);
         btn_dev_nomoreoptions = view.findViewById(R.id.btn_dev_nomoreoptions);
@@ -77,15 +71,11 @@ public class M1_SwipeDash_Frag extends Fragment {
             }
         });
 
-        cardStackAdapter = new CardStackAdapter(getContext(), ((M1_Activity) getContext()).getCards());
-        cardStackView = view.findViewById(R.id.card_stack);
-        cardStackView.setLayoutManager(new CardStackLayoutManager(getContext()));
-        cardStackView.setAdapter(cardStackAdapter);
+        card_stack = view.findViewById(R.id.card_stack);
+        M1_Activity m1Activity = (M1_Activity) getActivity();
+        card_stack.setLayoutManager(m1Activity.getCardStackLayoutManager());
+        card_stack.setAdapter(m1Activity.getCardStackAdapter());
 
         return view;
-    }
-
-    public CardStackAdapter getCardStackAdapter() {
-        return cardStackAdapter;
     }
 }

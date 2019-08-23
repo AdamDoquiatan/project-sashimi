@@ -1,42 +1,40 @@
 package com.somaprojexts.projectsashimi.M1_NoAccSoloMode;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Consumer;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.somaprojexts.projectsashimi.BuildConfig;
 import com.somaprojexts.projectsashimi.card.Card;
+import com.somaprojexts.projectsashimi.card.CardStackAdapter;
 import com.somaprojexts.projectsashimi.util.SectionsStatePagerAdapter;
 import com.somaprojexts.projectsashimi.R;
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
+import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class M1_Activity extends AppCompatActivity {
 
@@ -47,64 +45,58 @@ public class M1_Activity extends AppCompatActivity {
     private static SectionsStatePagerAdapter adapter;
     private static List<String> fragmentNameList;
 
-    private OkHttpClient client;
-    private JSONObject yelpData;
-    private LocationManager locationManager;
+    private ArrayList<Card> cards;
+    private CardStackLayoutManager cardStackLayoutManager;
+    private CardStackAdapter cardStackAdapter;
+    private RequestQueue queue;
     private double latitude;
     private double longitude;
-    private ArrayList<Card> cards;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: started");
         setContentView(R.layout.m1_activity_layout);
 
-        adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
-        client = new OkHttpClient();
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         cards = new ArrayList<>();
+        cardStackLayoutManager = new CardStackLayoutManager(this);
+        cardStackAdapter = new CardStackAdapter(this, cards);
 
+        adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.m1_fragment_container);
         setupViewPager(viewPager);
 
-        // Get GPS coordinates
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
-                    Log.i(TAG, "GPS: latitude=" + latitude + " longitude=" + longitude);
-                }
-
-                @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                }
-
-                @Override
-                public void onProviderEnabled(String provider) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String provider) {
-
-                }
-            });
-        } else {
-            latitude = 49.27468354941877;
-            longitude = -122.79091358272127;
-        }
-    }
-
-    protected void onResume() {
-        super.onResume();
+        queue = Volley.newRequestQueue(this);
+        latitude = 0;
+        longitude = 0;
         String url = "/businesses/search?radius=500&latitude=" + latitude
                 + "&longitude=" + longitude;
         Log.i(TAG, "URL: " + url);
         doYelpGetRequest(url);
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public CardStackLayoutManager getCardStackLayoutManager() {
+        return cardStackLayoutManager;
+    }
+
+    public CardStackAdapter getCardStackAdapter() {
+        return cardStackAdapter;
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        adapter.addFragment(new M1_PrefSelect_Frag(), "M1_PrefSelect_Frag");
+        adapter.addFragment(new M1_SwipeDash_Frag(), "M1_SwipeDash_Frag");
+//        adapter.addFragment(new M1_NoMoreOptions_Frag(), "M1_NoMoreOptions_Frag");
+//        adapter.addFragment(new M1_Details_Frag(), "M1_Details_Frag");
+//        adapter.addFragment(new M1_Favorites_Frag(), "M1_Favorites_Frag");
+//        adapter.addFragment(new M1_FavDetails_Frag(), "M1_FavDetails_Frag");
+//        adapter.addFragment(new M1_Map_Frag(), "M1_Map_Frag");
+
+        fragmentNameList = adapter.getFragmentNameList();
+        viewPager.setAdapter(adapter);
     }
 
     public static void setFragment(String fragmentName) {
@@ -112,66 +104,59 @@ public class M1_Activity extends AppCompatActivity {
         viewPager.setCurrentItem(fragmentNameList.indexOf(fragmentName));
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        adapter.addFragment(new M1_PrefSelect_Frag(), "M1_PrefSelect_Frag");
-        adapter.addFragment(new M1_SwipeDash_Frag(), "M1_SwipeDash_Frag");
-        adapter.addFragment(new M1_NoMoreOptions_Frag(), "M1_NoMoreOptions_Frag");
-        adapter.addFragment(new M1_Details_Frag(), "M1_Details_Frag");
-        adapter.addFragment(new M1_Favorites_Frag(), "M1_Favorites_Frag");
-        adapter.addFragment(new M1_FavDetails_Frag(), "M1_FavDetails_Frag");
-        adapter.addFragment(new M1_Map_Frag(), "M1_Map_Frag");
-
-        fragmentNameList = adapter.getFragmentNameList();
-        viewPager.setAdapter(adapter);
-    }
-
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
     private void doYelpGetRequest(String url) {
-        Request request = new Request.Builder()
-                .url(YELP_BASE_URL + url)
-                .addHeader("Authorization", "Bearer " + BuildConfig.YELP_API_KEY)
-                .build();
-        final Resources resources = getResources();
-        client.newCall(request).enqueue(new Callback() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET, YELP_BASE_URL + url, null,
+                new Response.Listener<JSONObject>() {
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response1) {
-                try (ResponseBody body1 = response1.body()) {
-                    yelpData = new JSONObject(body1.string());
-                    Log.i(TAG, yelpData.toString(1));
-                    JSONArray businesses = yelpData.getJSONArray("businesses");
-                    M1_SwipeDash_Frag swipeDashFrag = (M1_SwipeDash_Frag)
-                            adapter.getItem("M1_SwipeDash_Frag");
+            public void onResponse(JSONObject response) {
+                try {
+                    Log.i(TAG, response.toString(1));
+                    JSONArray businesses = response.getJSONArray("businesses");
 
                     for (int i = 0; i < businesses.length(); i++) {
-                        final JSONObject business = businesses.getJSONObject(i);
-                        String url = business.getString("image_url");
-                        Log.i(TAG, "IMAGE_URL: " + url);
-                        Request request = new Request.Builder().url(url).build();
-                        Response response2 = client.newCall(request).execute();
+                        JSONObject business = businesses.getJSONObject(i);
 
-                        try (ResponseBody body2 = response2.body()) {
-                            InputStream input = body2.byteStream();
-                            Bitmap bitmap = BitmapFactory.decodeStream(input);
-                            Drawable image = new BitmapDrawable(resources, bitmap);
-                            Card card = new Card(business.getString("name"), image);
-                            cards.add(card);
-                            swipeDashFrag.getCardStackAdapter().notifyItemInserted(cards.size() - 1);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        doImageGetRequest(business.getString("image_url"), image -> {
+                            try {
+                                Card card = new Card(business.getString("name"), image);
+                                cards.add(card);
+                                cardStackAdapter.notifyItemInserted(cards.size() - 1);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        });
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, null) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer " + BuildConfig.YELP_API_KEY);
+
+                return params;
+            }
+        };
+        queue.add(jsonObjectRequest);
+    }
+
+    private void doImageGetRequest(String url, final Consumer<Drawable> consumer) {
+        ImageRequest imageRequest = new ImageRequest(
+                url, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                Drawable image = new BitmapDrawable(getResources(), response);
+                try {
+                    consumer.accept(image);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        });
+        }, 0, 0,
+                ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565, null);
+        queue.add(imageRequest);
     }
 }
