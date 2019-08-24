@@ -1,8 +1,13 @@
 package com.somaprojexts.projectsashimi.M1_NoAccSoloMode;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -15,7 +20,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -34,7 +38,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 public class M1_Activity extends AppCompatActivity {
 
@@ -49,8 +52,7 @@ public class M1_Activity extends AppCompatActivity {
     private CardStackLayoutManager cardStackLayoutManager;
     private CardStackAdapter cardStackAdapter;
     private RequestQueue queue;
-    private double latitude;
-    private double longitude;
+    private LocationManager locationManager;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +67,17 @@ public class M1_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.m1_fragment_container);
         setupViewPager(viewPager);
 
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationManager.requestSingleUpdate(
+                LocationManager.GPS_PROVIDER, new GPSLocationListener(), null);
         queue = Volley.newRequestQueue(this);
-        latitude = 0;
-        longitude = 0;
-        String url = "/businesses/search?radius=500&latitude=" + latitude
-                + "&longitude=" + longitude;
-        Log.i(TAG, "URL: " + url);
-        doYelpGetRequest(url);
     }
 
     public ArrayList<Card> getCards() {
@@ -104,34 +110,10 @@ public class M1_Activity extends AppCompatActivity {
         viewPager.setCurrentItem(fragmentNameList.indexOf(fragmentName));
     }
 
-    private void doYelpGetRequest(String url) {
+    private void doYelpGetRequest(String url, final Consumer<JSONObject> callback) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET, YELP_BASE_URL + url, null,
-                new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    Log.i(TAG, response.toString(1));
-                    JSONArray businesses = response.getJSONArray("businesses");
-
-                    for (int i = 0; i < businesses.length(); i++) {
-                        JSONObject business = businesses.getJSONObject(i);
-
-                        doImageGetRequest(business.getString("image_url"), image -> {
-                            try {
-                                Card card = new Card(business.getString("name"), image);
-                                cards.add(card);
-                                cardStackAdapter.notifyItemInserted(cards.size() - 1);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        });
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, null) {
+                callback::accept, null) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
@@ -143,14 +125,14 @@ public class M1_Activity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    private void doImageGetRequest(String url, final Consumer<Drawable> consumer) {
+    private void doImageGetRequest(String url, final Consumer<Drawable> callback) {
         ImageRequest imageRequest = new ImageRequest(
                 url, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
                 Drawable image = new BitmapDrawable(getResources(), response);
                 try {
-                    consumer.accept(image);
+                    callback.accept(image);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -158,5 +140,58 @@ public class M1_Activity extends AppCompatActivity {
         }, 0, 0,
                 ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565, null);
         queue.add(imageRequest);
+    }
+
+    private class GPSLocationListener implements LocationListener {
+
+        @Override
+        public void onLocationChanged(Location location) {
+            String url = "/businesses/search?radius=2000&latitude=" + location.getLatitude()
+                    + "&longitude=" + location.getLongitude();
+            Log.i(TAG, "URL: " + url);
+
+            doYelpGetRequest(url, new CardLoader());
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    }
+
+    private class CardLoader implements Consumer<JSONObject> {
+
+        @Override
+        public void accept(JSONObject jsonObject) {
+            try {
+                JSONArray businesses = jsonObject.getJSONArray("businesses");
+
+                for (int i = 0; i < businesses.length(); i++) {
+                    JSONObject business = businesses.getJSONObject(i);
+
+                    doImageGetRequest(business.getString("image_url"), image -> {
+                        try {
+                            Card card = new Card(business.getString("name"), image);
+                            cards.add(card);
+                            cardStackAdapter.notifyItemInserted(cards.size() - 1);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
