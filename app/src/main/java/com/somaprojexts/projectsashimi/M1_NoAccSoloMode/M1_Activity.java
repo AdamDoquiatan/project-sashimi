@@ -6,10 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -23,6 +22,9 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.somaprojexts.projectsashimi.BuildConfig;
 import com.somaprojexts.projectsashimi.card.Card;
 import com.somaprojexts.projectsashimi.card.CardStackAdapter;
@@ -52,7 +54,10 @@ public class M1_Activity extends AppCompatActivity {
     private CardStackLayoutManager cardStackLayoutManager;
     private CardStackAdapter cardStackAdapter;
     private RequestQueue queue;
-    private LocationManager locationManager;
+    private FusedLocationProviderClient fusedLocationClient;
+
+    private M1_PrefSelect_Frag m1PrefSelectFrag;
+    private M1_SwipeDash_Frag m1SwipeDashFrag;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,10 +79,22 @@ public class M1_Activity extends AppCompatActivity {
             return;
         }
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationManager.requestSingleUpdate(
-                LocationManager.GPS_PROVIDER, new GPSLocationListener(), null);
         queue = Volley.newRequestQueue(this);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            String url = "/businesses/search?radius=2000&latitude="
+                                    + location.getLatitude()
+                                    + "&longitude=" + location.getLongitude();
+                            Log.i(TAG, "URL: " + url);
+
+                            doYelpGetRequest(url, new CardLoader());
+                        }
+                    }
+                });
     }
 
     public ArrayList<Card> getCards() {
@@ -93,8 +110,10 @@ public class M1_Activity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        adapter.addFragment(new M1_PrefSelect_Frag(), "M1_PrefSelect_Frag");
-        adapter.addFragment(new M1_SwipeDash_Frag(), "M1_SwipeDash_Frag");
+        m1PrefSelectFrag = (M1_PrefSelect_Frag) adapter
+                .addFragment(new M1_PrefSelect_Frag(), "M1_PrefSelect_Frag");
+        m1SwipeDashFrag = (M1_SwipeDash_Frag) adapter
+                .addFragment(new M1_SwipeDash_Frag(), "M1_SwipeDash_Frag");
 //        adapter.addFragment(new M1_NoMoreOptions_Frag(), "M1_NoMoreOptions_Frag");
 //        adapter.addFragment(new M1_Details_Frag(), "M1_Details_Frag");
 //        adapter.addFragment(new M1_Favorites_Frag(), "M1_Favorites_Frag");
@@ -142,33 +161,6 @@ public class M1_Activity extends AppCompatActivity {
         queue.add(imageRequest);
     }
 
-    private class GPSLocationListener implements LocationListener {
-
-        @Override
-        public void onLocationChanged(Location location) {
-            String url = "/businesses/search?radius=2000&latitude=" + location.getLatitude()
-                    + "&longitude=" + location.getLongitude();
-            Log.i(TAG, "URL: " + url);
-
-            doYelpGetRequest(url, new CardLoader());
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    }
-
     private class CardLoader implements Consumer<JSONObject> {
 
         @Override
@@ -184,6 +176,7 @@ public class M1_Activity extends AppCompatActivity {
                             Card card = new Card(business.getString("name"), image);
                             cards.add(card);
                             cardStackAdapter.notifyItemInserted(cards.size() - 1);
+                            m1SwipeDashFrag.getProgress_bar().setVisibility(View.INVISIBLE);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
