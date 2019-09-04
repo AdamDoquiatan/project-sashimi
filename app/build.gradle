@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId 'com.somaprojexts.projectsashimi'
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
@@ -13,6 +13,7 @@ android {
     buildTypes {
         buildTypes.each {
             it.buildConfigField 'String', 'YELP_API_KEY', YelpAPIKey
+            it.buildConfigField 'String', 'YELP_BASE_URL', YelpBaseURL
         }
         release {
             minifyEnabled false
@@ -37,4 +38,5 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 }

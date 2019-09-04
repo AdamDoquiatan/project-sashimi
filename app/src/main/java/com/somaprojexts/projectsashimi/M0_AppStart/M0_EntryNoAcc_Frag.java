@@ -35,9 +35,6 @@ public class M0_EntryNoAcc_Frag extends Fragment {
         btn_gowithfriends = view.findViewById(R.id.btn_gowithfriends);
 
         btn_gosolo.setOnClickListener(new View.OnClickListener() {
-
-
-
             @Override
             public void onClick(View view) {
                 Log.i("btn_goSolo","clicked");

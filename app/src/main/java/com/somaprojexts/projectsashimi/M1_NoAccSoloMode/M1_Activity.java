@@ -6,23 +6,22 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Consumer;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.somaprojexts.projectsashimi.BuildConfig;
 import com.somaprojexts.projectsashimi.card.Card;
 import com.somaprojexts.projectsashimi.card.CardStackAdapter;
@@ -38,35 +37,46 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public class M1_Activity extends AppCompatActivity {
 
     private static final String TAG = "M1_Activity.java";
-    private static final String YELP_BASE_URL = "https://api.yelp.com/v3";
 
     private static ViewPager viewPager;
     private static SectionsStatePagerAdapter adapter;
     private static List<String> fragmentNameList;
 
+    // CardStackView components
     private ArrayList<Card> cards;
     private CardStackLayoutManager cardStackLayoutManager;
     private CardStackAdapter cardStackAdapter;
-    private RequestQueue queue;
-    private LocationManager locationManager;
+
+    private RequestQueue queue; // Volley HTTP request queue
+    private FusedLocationProviderClient fusedLocationClient; // GPS location API
+
+    // References to fragments
+    private M1_PrefSelect_Frag m1PrefSelectFrag;
+    private M1_SwipeDash_Frag m1SwipeDashFrag;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: started");
         setContentView(R.layout.m1_activity_layout);
 
+        // Initialize CardStackView components
         cards = new ArrayList<>();
         cardStackLayoutManager = new CardStackLayoutManager(this);
         cardStackAdapter = new CardStackAdapter(this, cards);
 
+        queue = Volley.newRequestQueue(this);
+
+        // Set up view pager
         adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.m1_fragment_container);
         setupViewPager(viewPager);
 
+        // Check location permissions
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -74,10 +84,12 @@ public class M1_Activity extends AppCompatActivity {
             return;
         }
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationManager.requestSingleUpdate(
-                LocationManager.GPS_PROVIDER, new GPSLocationListener(), null);
-        queue = Volley.newRequestQueue(this);
+        // Wait to get last GPS location, then send Yelp API call with location coordinates
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
+            String url = getYelpUrl("/businesses/search", location);
+            getYelpData(url).thenAcceptAsync(data -> loadCardsFromYelpData(cards, data));
+        });
     }
 
     public ArrayList<Card> getCards() {
@@ -93,8 +105,10 @@ public class M1_Activity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        adapter.addFragment(new M1_PrefSelect_Frag(), "M1_PrefSelect_Frag");
-        adapter.addFragment(new M1_SwipeDash_Frag(), "M1_SwipeDash_Frag");
+        m1PrefSelectFrag = (M1_PrefSelect_Frag) adapter
+                .addFragment(new M1_PrefSelect_Frag(), "M1_PrefSelect_Frag");
+        m1SwipeDashFrag = (M1_SwipeDash_Frag) adapter
+                .addFragment(new M1_SwipeDash_Frag(), "M1_SwipeDash_Frag");
 //        adapter.addFragment(new M1_NoMoreOptions_Frag(), "M1_NoMoreOptions_Frag");
 //        adapter.addFragment(new M1_Details_Frag(), "M1_Details_Frag");
 //        adapter.addFragment(new M1_Favorites_Frag(), "M1_Favorites_Frag");
@@ -110,10 +124,18 @@ public class M1_Activity extends AppCompatActivity {
         viewPager.setCurrentItem(fragmentNameList.indexOf(fragmentName));
     }
 
-    private void doYelpGetRequest(String url, final Consumer<JSONObject> callback) {
+    private String getYelpUrl(String endpoint, Location location) {
+        return BuildConfig.YELP_BASE_URL + endpoint + "?radius=2000" +
+                "&latitude=" + location.getLatitude() +
+                "&longitude=" + location.getLongitude();
+    }
+
+    private CompletableFuture<JSONObject> getYelpData(String url) {
+        CompletableFuture<JSONObject> result = new CompletableFuture<>();
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET, YELP_BASE_URL + url, null,
-                callback::accept, null) {
+                Request.Method.GET, url, null,
+                response -> result.complete(response), null) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
@@ -122,76 +144,39 @@ public class M1_Activity extends AppCompatActivity {
                 return params;
             }
         };
+
         queue.add(jsonObjectRequest);
+        return result;
     }
 
-    private void doImageGetRequest(String url, final Consumer<Drawable> callback) {
+    private CompletableFuture<Drawable> getYelpImage(String url) {
+        CompletableFuture<Drawable> result = new CompletableFuture<>();
+
         ImageRequest imageRequest = new ImageRequest(
-                url, new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-                Drawable image = new BitmapDrawable(getResources(), response);
-                try {
-                    callback.accept(image);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 0, 0,
+                url, response -> result.complete(new BitmapDrawable(getResources(), response)),
+                0, 0,
                 ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565, null);
+
         queue.add(imageRequest);
+        return result;
     }
 
-    private class GPSLocationListener implements LocationListener {
+    private void loadCardsFromYelpData(ArrayList<Card> cards, JSONObject data) {
+        try {
+            JSONArray businesses = data.getJSONArray("businesses");
 
-        @Override
-        public void onLocationChanged(Location location) {
-            String url = "/businesses/search?radius=2000&latitude=" + location.getLatitude()
-                    + "&longitude=" + location.getLongitude();
-            Log.i(TAG, "URL: " + url);
-
-            doYelpGetRequest(url, new CardLoader());
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    }
-
-    private class CardLoader implements Consumer<JSONObject> {
-
-        @Override
-        public void accept(JSONObject jsonObject) {
-            try {
-                JSONArray businesses = jsonObject.getJSONArray("businesses");
-
-                for (int i = 0; i < businesses.length(); i++) {
-                    JSONObject business = businesses.getJSONObject(i);
-
-                    doImageGetRequest(business.getString("image_url"), image -> {
-                        try {
-                            Card card = new Card(business.getString("name"), image);
-                            cards.add(card);
+            for (int i = 0; i < businesses.length(); i++) {
+                JSONObject business = businesses.getJSONObject(i);
+                String name = business.getString("name");
+                getYelpImage(business.getString("image_url"))
+                        .thenAccept(image -> {
+                            cards.add(new Card(name, image));
                             cardStackAdapter.notifyItemInserted(cards.size() - 1);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                            m1SwipeDashFrag.getProgress_bar().setVisibility(View.INVISIBLE);
+                        });
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }
