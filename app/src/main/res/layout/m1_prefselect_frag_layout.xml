@@ -31,19 +31,4 @@
         tools:layout_conversion_wrapHeight="108"
         tools:layout_conversion_wrapWidth="584" />
 
-    <TextView
-        android:id="@+id/dev_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/devnote_2a"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_conversion_wrapHeight="134"
-        tools:layout_conversion_wrapWidth="737" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
