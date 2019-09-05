@@ -43,6 +43,10 @@ public class M1_Activity extends AppCompatActivity {
 
     private static final String TAG = "M1_Activity.java";
 
+    public static final int RADIUS_DEFAULT = 2;
+    public static final int RADIUS_MIN = 0;
+    public static final int RADIUS_MAX = 40; // from Yelp API docs
+
     private static ViewPager viewPager;
     private static SectionsStatePagerAdapter adapter;
     private static List<String> fragmentNameList;
@@ -54,6 +58,11 @@ public class M1_Activity extends AppCompatActivity {
 
     private RequestQueue queue; // Volley HTTP request queue
     private FusedLocationProviderClient fusedLocationClient; // GPS location API
+
+    // Yelp API request parameters
+    private Location location;
+    private int radius; // in km
+    private String term; // search term
 
     // References to fragments
     private M1_PrefSelect_Frag m1PrefSelectFrag;
@@ -69,8 +78,6 @@ public class M1_Activity extends AppCompatActivity {
         cardStackLayoutManager = new CardStackLayoutManager(this);
         cardStackAdapter = new CardStackAdapter(this, cards);
 
-        queue = Volley.newRequestQueue(this);
-
         // Set up view pager
         adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.m1_fragment_container);
@@ -84,11 +91,16 @@ public class M1_Activity extends AppCompatActivity {
             return;
         }
 
+        radius = RADIUS_DEFAULT;
+
+        queue = Volley.newRequestQueue(this);
+
         // Wait to get last GPS location, then send Yelp API call with location coordinates
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
-            String url = getYelpUrl("/businesses/search", location);
-            getYelpData(url).thenAcceptAsync(data -> loadCardsFromYelpData(cards, data));
+            this.location = location;
+            Log.i(TAG, "radius=" + radius);
+            doYelpSearch();
         });
     }
 
@@ -102,6 +114,25 @@ public class M1_Activity extends AppCompatActivity {
 
     public CardStackAdapter getCardStackAdapter() {
         return cardStackAdapter;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        if (radius >= RADIUS_MIN && radius <= RADIUS_MAX) {
+            this.radius = radius;
+            Log.i(TAG, "radius=" + this.radius);
+        }
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -124,10 +155,28 @@ public class M1_Activity extends AppCompatActivity {
         viewPager.setCurrentItem(fragmentNameList.indexOf(fragmentName));
     }
 
+    public void doYelpSearch() {
+        String url = getYelpUrl("/businesses/search", location);
+        getYelpData(url).thenAcceptAsync(data -> loadCardsFromYelpData(cards, data));
+    }
+
+    public void clearCards() {
+        m1SwipeDashFrag.getProgress_bar().setVisibility(View.VISIBLE);
+        int size = cards.size();
+        cards.clear();
+        cardStackAdapter.notifyItemRangeRemoved(0, size);
+        Log.i(TAG, "size=" + cards.size());
+    }
+
     private String getYelpUrl(String endpoint, Location location) {
-        return BuildConfig.YELP_BASE_URL + endpoint + "?radius=2000" +
+        String url = BuildConfig.YELP_BASE_URL + endpoint +
+                "?radius=" + (radius * 1000) + // Convert km to meters for Yelp API
                 "&latitude=" + location.getLatitude() +
                 "&longitude=" + location.getLongitude();
+        if (term != null) {
+            url += "&term=" + term;
+        }
+        return url;
     }
 
     private CompletableFuture<JSONObject> getYelpData(String url) {

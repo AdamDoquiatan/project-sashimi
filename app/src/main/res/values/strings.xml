@@ -31,6 +31,10 @@
     <!-- m1_prefselect_frag_layout -->
     <string name="header_2a">Pref Select Page</string>
     <string name="devnote_2a">To do:\nAdd Preference Selection Form</string>
+    <string name="distance_label">Distance:</string>
+    <string name="term_label">Search For:</string>
+    <string name="btn_search">Search</string>
+    <string name="term_input">Food</string>
     <!-- ========================= -->
 
     <!-- m1_swipedash_frag_layout-->
